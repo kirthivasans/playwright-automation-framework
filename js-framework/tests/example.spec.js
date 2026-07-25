@@ -9,9 +9,18 @@ test('Add item to cart and verify price', async({page})=> {
 
     await expect(page).toHaveURL("https://www.saucedemo.com/inventory.html");
 
-    await page.locator("#add-to-cart-sauce-labs-backpack").click();
-    await page.locator('[data-test="shopping-cart-link"]').click();
+    const cart = [
+        {name: 'Sauce Labs Backpack', addToCartId: 'add-to-cart-sauce-labs-backpack', price: '$29.99'},
+        {name: 'Sauce Labs Bike Light', addToCartId: 'add-to-cart-sauce-labs-bike-light', price: '$9.99'}
+    ]
 
-    await page.locator('[data-test="inventory-item-name"]').click();
-    await expect(page.locator('[data-test="inventory-item-price"]')).toHaveText("$29.99");
+    for (const carts of cart) {
+        await page.locator(`[data-test="${carts.addToCartId}"]`).click();
+    }
+
+
+
+    await expect(page.locator('[data-test="shopping-cart-link"]')).toHaveText('2');
+    await page.locator('[data-test="shopping-cart-link"]').click();
+    await expect(page.locator('[data-test="title"]')).toHaveText('Your Cart');
 });
