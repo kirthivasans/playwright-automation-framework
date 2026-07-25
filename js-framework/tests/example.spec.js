@@ -1,6 +1,6 @@
 import {test, expect} from '@playwright/test';
-const LoginPage = require('../pages/LoginPage');
-const InventoryPage = require('../pages/InventoryPage');
+const LoginPage = require('../pages/loginPage');
+const InventoryPage = require('../pages/inventoryPage');
 
 test('Login validation - POM', async({page}) => {
     await page.goto("https://www.saucedemo.com");
