@@ -13,5 +13,4 @@ class InventoryPage {
         return await this.cartBadge.textContent();
     }
 }
-
 module.exports = InventoryPage;
