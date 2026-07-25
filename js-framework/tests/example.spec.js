@@ -15,5 +15,4 @@ test('Login validation - POM', async({page}) => {
     
     const count = await inventoryPage.getCartCount();
     expect(count).toBe('2');
-
 });
