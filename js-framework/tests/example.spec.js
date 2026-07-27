@@ -8,7 +8,7 @@ test('Login validation - POM', async({page}) => {
     await page.goto("/");
 
     const loginPage = new LoginPage(page);
-    await loginPage.login('testData.validUser.username', 'testData.validUser.password');
+    await loginPage.login(testData.validUser.username, testData.validUser.password);
     await expect(page).toHaveURL("https://www.saucedemo.com/inventory.html");
 
     const inventoryPage = new InventoryPage(page);
