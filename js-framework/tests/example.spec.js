@@ -1,6 +1,7 @@
 import {test, expect} from '@playwright/test';
 const LoginPage = require('../pages/loginPage');
 const InventoryPage = require('../pages/inventoryPage');
+const CartPage = require('../pages/cartPage');
 
 test('Login validation - POM', async({page}) => {
     await page.goto("https://www.saucedemo.com");
@@ -15,4 +16,11 @@ test('Login validation - POM', async({page}) => {
     
     const count = await inventoryPage.getCartCount();
     expect(count).toBe('2');
+
+    await inventoryPage.cartLink.click();
+
+    const cartPage = new CartPage(page);
+    await expect(cartPage.cartTitle).toHaveText('Your Cart');
+    const itemCount = await cartPage.getItemCount();
+    expect(itemCount).toBe(2);
 });
